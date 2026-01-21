@@ -42,7 +42,7 @@ const Landing = () => {
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 >
-                    <source src="/videos/video.mp4" type="video/mp4" />
+                    <source src="/videos/video2.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
 
