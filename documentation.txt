@@ -1,0 +1,50 @@
+# Documentación del Proyecto "El Refugio 2.0"
+
+## Resumen
+
+El proyecto es una aplicación React bien estructurada para una propiedad de alquiler, que utiliza Firebase para los servicios de backend. La funcionalidad principal gira en torno a un sistema manual de consulta de reservas: un usuario expresa su interés a través de un calendario, lo que abre un chat de WhatsApp, y el administrador utiliza un panel de control privado para bloquear manualmente las fechas en la base de datos de Firestore. Esta actualización se refleja en tiempo real en el sitio público. La aplicación utiliza React para el frontend, Vite para el empaquetado, Tailwind CSS para el estilo y React Router para la navegación. Firebase Auth se utiliza para el inicio de sesión del administrador y Firestore es la base de datos para las reservas y los precios.
+
+## Tecnologías Principales
+
+-   **React:** Biblioteca de JavaScript para construir la interfaz de usuario.
+-   **Vite:** Herramienta de construcción y servidor de desarrollo rápido para aplicaciones web modernas.
+-   **Tailwind CSS:** Framework de CSS de utilidad para un estilo rápido y personalizado.
+-   **React Router:** Para la navegación y el enrutamiento dentro de la aplicación.
+-   **Firebase:** Plataforma de desarrollo de aplicaciones de Google utilizada para:
+    -   **Authentication:** Para el inicio de sesión seguro del administrador.
+    -   **Firestore:** Base de datos NoSQL en tiempo real para almacenar fechas de reserva y precios dinámicos.
+
+## Estructura y Flujo de Funcionalidades
+
+### 1. Flujo de Usuario (Público)
+
+-   **Página de Inicio (`src/pages/Home.jsx`):** Es la página principal que ven los usuarios. Muestra información de la propiedad, una galería de fotos y el calendario de reservas.
+-   **Calendario de Reservas (`src/components/BookingCalendar.jsx`):**
+    -   Obtiene en tiempo real las fechas ya reservadas desde la base de datos de Firestore y las deshabilita en el calendario.
+    -   Muestra precios dinámicos para diferentes temporadas (si están configurados).
+    -   Cuando un usuario selecciona un rango de fechas y hace clic en "Consultar", se abre una conversación de WhatsApp con un mensaje pre-rellenado que incluye las fechas seleccionadas, redirigiendo al usuario para que finalice la reserva de forma manual con el administrador.
+
+### 2. Flujo de Administrador (Privado)
+
+-   **Inicio de Sesión (`src/pages/Login.jsx`):** Una página de inicio de sesión simple donde el administrador ingresa sus credenciales. Firebase Auth verifica la identidad.
+-   **Ruta Privada (`src/components/PrivateRoute.jsx`):** Este componente protege el panel de administración. Verifica si hay un usuario autenticado a través de Firebase; si no, redirige a la página de inicio de sesión.
+-   **Panel de Administración (`src/pages/AdminDashboard.jsx`):**
+    -   Una vez que ha iniciado sesión, el administrador es redirigido a este panel.
+    -   Permite al administrador ver las reservas existentes.
+    -   **Gestión de Reservas:** El administrador puede añadir nuevas reservas seleccionando un rango de fechas. Estas fechas se guardan en Firestore y el calendario público se actualiza instantáneamente para mostrar esas fechas como no disponibles. También puede eliminar reservas.
+    -   **Gestión de Precios:** El administrador puede actualizar los precios para la temporada alta y baja, que se almacenan en Firestore y se reflejan en el calendario público.
+
+### 3. Configuración de Backend (Firebase)
+
+-   **Configuración de Firebase (`src/firebase.js`):** Este archivo inicializa y exporta las instancias de Firebase Auth y Firestore, utilizando las credenciales del fichero `.env` del proyecto. Es el punto central para todas las interacciones con los servicios de Firebase.
+
+## Archivos Relevantes
+
+-   `package.json`: Define todas las tecnologías del proyecto, incluyendo React, Vite, Firebase y Tailwind CSS.
+-   `src/App.jsx`: Define la estructura de enrutamiento completa de la aplicación, incluyendo las páginas públicas y la ruta de administración protegida.
+-   `src/pages/Home.jsx`: La página de inicio pública principal. Obtiene precios dinámicos de Firestore e incluye el componente principal de cara al usuario para las consultas de reserva.
+-   `src/components/BookingCalendar.jsx`: El núcleo del sistema de consulta de reservas. Obtiene las fechas reservadas de Firestore en tiempo real y dirige a los usuarios a WhatsApp para finalizar la reserva.
+-   `src/pages/AdminDashboard.jsx`: El panel de control administrativo. Permite al propietario del sitio realizar operaciones CRUD en las reservas y actualizar los precios del sitio en Firestore.
+-   `src/pages/Login.jsx`: Gestiona la autenticación del administrador mediante Firebase Auth.
+-   `src/components/PrivateRoute.jsx`: Protege la ruta del panel de administración comprobando el estado de autenticación del usuario.
+-   `src/firebase.js`: Archivo de configuración central para todos los servicios de Firebase.
