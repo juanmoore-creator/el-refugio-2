@@ -7,8 +7,8 @@ import { collection, getDocs, addDoc, deleteDoc, doc, query, orderBy, Timestamp,
 import { db } from '../firebase';
 
 const PROPERTIES = [
-    { id: 'casa-principal', name: 'El Refugio (Casa Principal)' },
-    { id: 'cabana', name: 'La Cabaña' }
+    { id: 'yate-fortuna', name: 'Yate Fortuna' },
+    { id: 'av-crucero-la-argentina', name: 'Av. Crucero la Argentina' }
 ];
 
 export default function AdminDashboard() {
@@ -145,8 +145,8 @@ export default function AdminDashboard() {
                             key={prop.id}
                             onClick={() => setSelectedProperty(prop.id)}
                             className={`px-6 py-3 rounded-xl font-semibold transition-all shadow-sm ${selectedProperty === prop.id
-                                    ? 'bg-hunter-green text-white shadow-md scale-105 ring-2 ring-hunter-green ring-offset-2'
-                                    : 'bg-white text-blue-slate hover:bg-gray-50 border border-muted-olive/20'
+                                ? 'bg-hunter-green text-white shadow-md scale-105 ring-2 ring-hunter-green ring-offset-2'
+                                : 'bg-white text-blue-slate hover:bg-gray-50 border border-muted-olive/20'
                                 }`}
                         >
                             {prop.name}

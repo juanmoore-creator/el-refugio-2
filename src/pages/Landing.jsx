@@ -18,14 +18,14 @@ const Landing = () => {
                 </video>
 
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500 flex flex-col items-center justify-center text-center p-6">
-                    <h2 className="text-white text-4xl md:text-5xl font-bold mb-6 tracking-wider drop-shadow-lg transform transition-transform duration-500 group-hover:-translate-y-2">
-                        EL REFUGIO
+                    <h2 className="text-white text-4xl md:text-5xl font-bold mb-6 tracking-wider drop-shadow-lg transform transition-transform duration-500 group-hover:-translate-y-2 uppercase">
+                        YATE FORTUNA
                     </h2>
                     <p className="text-gray-200 text-lg md:text-xl mb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
                         Casa Principal
                     </p>
                     <Link
-                        to="/propiedad/casa-principal"
+                        to="/propiedad/yate-fortuna"
                         className="px-8 py-3 bg-olive-bark/80 hover:bg-olive-bark text-white font-semibold rounded-full backdrop-blur-sm border border-white/30 transition-all duration-300 hover:scale-105 shadow-lg uppercase tracking-widest text-sm"
                     >
                         Explorar
@@ -47,14 +47,14 @@ const Landing = () => {
                 </video>
 
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500 flex flex-col items-center justify-center text-center p-6">
-                    <h2 className="text-white text-4xl md:text-5xl font-bold mb-6 tracking-wider drop-shadow-lg transform transition-transform duration-500 group-hover:-translate-y-2">
-                        LA CABAÑA
+                    <h2 className="text-white text-4xl md:text-5xl font-bold mb-6 tracking-wider drop-shadow-lg transform transition-transform duration-500 group-hover:-translate-y-2 uppercase">
+                        AV. CRUCERO LA ARGENTINA
                     </h2>
                     <p className="text-gray-200 text-lg md:text-xl mb-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
                         Experiencia Íntima
                     </p>
                     <Link
-                        to="/propiedad/cabana"
+                        to="/propiedad/av-crucero-la-argentina"
                         className="px-8 py-3 bg-olive-bark/80 hover:bg-olive-bark text-white font-semibold rounded-full backdrop-blur-sm border border-white/30 transition-all duration-300 hover:scale-105 shadow-lg uppercase tracking-widest text-sm"
                     >
                         Explorar

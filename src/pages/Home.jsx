@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import BookingCalendar from '../components/BookingCalendar';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const Home = () => {
     const { id } = useParams();
+    const otherProperty = id === 'yate-fortuna'
+        ? { name: 'Ver Av. Crucero la Argentina', url: '/propiedad/av-crucero-la-argentina' }
+        : { name: 'Ver Yate Fortuna', url: '/propiedad/yate-fortuna' };
     const [darkMode, setDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [price, setPrice] = useState('75.000');
@@ -74,7 +77,7 @@ const Home = () => {
         }
     };
 
-    const galleryImages = [
+    const yateFortunaImages = [
         { id: 1, src: "/images/1.jpeg", caption: "Parrilla", location: "Patio delantero" },
         { id: 2, src: "/images/2.jpeg", caption: "Televisión SMART", location: "Cocina-comedor" },
         { id: 3, src: "/images/3.jpeg", caption: "Vista al bosque", location: "Cocina-comedor" },
@@ -83,6 +86,18 @@ const Home = () => {
         { id: 6, src: "/images/6.jpeg", caption: "Excelente ducha", location: "Baño" },
         { id: 7, src: "/images/7.jpeg", caption: "A 1 cuadra de la playa", location: "Patio delantero" },
     ];
+
+    const avCruceroImages = [
+        { id: 1, src: "/images/arriba/1.jpeg", caption: "Vista Exterior", location: "Av. Crucero la Argentina" },
+        { id: 2, src: "/images/arriba/2.jpeg", caption: "Interior Calido", location: "Av. Crucero la Argentina" },
+        { id: 3, src: "/images/arriba/3.jpeg", caption: "Espacio Confortable", location: "Av. Crucero la Argentina" },
+        { id: 4, src: "/images/arriba/4.jpeg", caption: "Cocina Equipada", location: "Av. Crucero la Argentina" },
+        { id: 5, src: "/images/arriba/5.jpeg", caption: "Habitación Principal", location: "Av. Crucero la Argentina" },
+        { id: 6, src: "/images/arriba/6.jpeg", caption: "Detalles Únicos", location: "Av. Crucero la Argentina" },
+        { id: 7, src: "/images/arriba/7.jpeg", caption: "Entorno Natural", location: "Av. Crucero la Argentina" },
+    ];
+
+    const galleryImages = id === 'av-crucero-la-argentina' ? avCruceroImages : yateFortunaImages;
 
     return (
         <div className={`bg-snow dark:bg-hunter-green text-hunter-green dark:text-snow font-sans transition-colors duration-300 overflow-x-hidden ${darkMode ? 'dark' : ''}`}>
@@ -97,6 +112,7 @@ const Home = () => {
                         <a href="#galeria" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Galería</a>
                         <a href="#reservas" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Reserva</a>
                         <a href="#ubicacion" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Ubicación</a>
+                        <Link to={otherProperty.url} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">{otherProperty.name}</Link>
                         <a href="#reservas" className="px-5 py-2.5 bg-hunter-green text-white rounded-full hover:bg-olive-bark transition-all font-semibold shadow-md hover:shadow-lg">Reservar Ahora</a>
                     </div>
 
@@ -127,6 +143,7 @@ const Home = () => {
                         <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Galería</a>
                         <a href="#reservas" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Reserva</a>
                         <a href="#ubicacion" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Ubicación</a>
+                        <Link to={otherProperty.url} onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">{otherProperty.name}</Link>
                         <a href="#reservas" onClick={() => setMobileMenuOpen(false)} className="mx-auto px-8 py-3 bg-hunter-green text-white rounded-xl font-semibold shadow-md w-full max-w-xs">Reservar Ahora</a>
                     </div>
                 </div>
@@ -361,7 +378,7 @@ const Home = () => {
                             <ul className="space-y-4 text-snow/70">
                                 <li className="flex items-start justify-center md:justify-start gap-3">
                                     <span className="material-icons-outlined text-sm">location_on</span>
-                                    <span>Yate Fortuna <br />Aguas Verdes</span>
+                                    <span>{id === 'av-crucero-la-argentina' ? 'Av. Crucero la Argentina' : 'Yate Fortuna'} <br />Aguas Verdes</span>
                                 </li>
                                 <li className="flex items-center justify-center md:justify-start gap-3">
                                     <span className="material-icons-outlined text-sm">phone</span>
