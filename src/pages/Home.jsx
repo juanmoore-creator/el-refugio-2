@@ -288,7 +288,7 @@ const Home = () => {
                                     </div>
                                     <div>
                                         <p className="text-xs uppercase tracking-widest opacity-60">Temporada 2026</p>
-                                        <p className="text-xl font-bold font-serif italic">${price} <span className="text-sm font-sans not-italic font-normal opacity-70">/ noche</span></p>
+                                        <p className="text-xl font-bold font-serif italic">${price} <span className="text-sm font-sans not-italic font-normal opacity-70">/ día</span></p>
                                     </div>
                                 </li>
                             </ul>
