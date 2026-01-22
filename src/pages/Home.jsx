@@ -18,9 +18,6 @@ const Home = () => {
             poster: '/images/arriba/1.jpeg' // Using first image as poster for consistency
         };
 
-    const otherProperty = id === 'yate-fortuna'
-        ? { name: 'Ver Av. Crucero la Argentina', url: '/propiedad/av-crucero-la-argentina' }
-        : { name: 'Ver Yate Fortuna', url: '/propiedad/yate-fortuna' };
     const [darkMode, setDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [price, setPrice] = useState('75.000');
@@ -115,14 +112,14 @@ const Home = () => {
             {/* Navbar */}
             <nav className="fixed top-0 w-full z-50 bg-snow/90 dark:bg-hunter-green/90 backdrop-blur-md border-b border-muted-olive/20 dark:border-snow/10">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <div className="text-2xl font-bold tracking-tight text-hunter-green dark:text-snow font-sans">El Refugio</div>
+                    <Link to="/" className="text-2xl font-bold tracking-tight text-hunter-green dark:text-snow font-sans">El Refugio</Link>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase text-blue-slate dark:text-snow/90">
                         <a href="#galeria" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Galería</a>
                         <a href="#reservas" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Reserva</a>
                         <a href="#ubicacion" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Ubicación</a>
-                        <Link to={otherProperty.url} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">{otherProperty.name}</Link>
+                        <Link to="/" className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Inicio</Link>
                         <a href="#reservas" className="px-5 py-2.5 bg-hunter-green text-white rounded-full hover:bg-olive-bark transition-all font-semibold shadow-md hover:shadow-lg">Reservar Ahora</a>
                     </div>
 
@@ -153,7 +150,7 @@ const Home = () => {
                         <a href="#galeria" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Galería</a>
                         <a href="#reservas" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Reserva</a>
                         <a href="#ubicacion" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Ubicación</a>
-                        <Link to={otherProperty.url} onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">{otherProperty.name}</Link>
+                        <Link to="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-olive-bark dark:hover:text-muted-olive transition-colors">Inicio</Link>
                         <a href="#reservas" onClick={() => setMobileMenuOpen(false)} className="mx-auto px-8 py-3 bg-hunter-green text-white rounded-xl font-semibold shadow-md w-full max-w-xs">Reservar Ahora</a>
                     </div>
                 </div>
