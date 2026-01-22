@@ -6,6 +6,18 @@ import { db } from '../firebase';
 
 const Home = () => {
     const { id } = useParams();
+    const currentProperty = id === 'yate-fortuna'
+        ? {
+            name: 'Yate Fortuna',
+            video: '/videos/video.mp4',
+            poster: '/images/11.jpeg' // Keep existing poster for Yate/Casa
+        }
+        : {
+            name: 'Av. Crucero la Argentina',
+            video: '/videos/video2.mp4',
+            poster: '/images/arriba/1.jpeg' // Using first image as poster for consistency
+        };
+
     const otherProperty = id === 'yate-fortuna'
         ? { name: 'Ver Av. Crucero la Argentina', url: '/propiedad/av-crucero-la-argentina' }
         : { name: 'Ver Yate Fortuna', url: '/propiedad/yate-fortuna' };
@@ -91,9 +103,7 @@ const Home = () => {
         { id: 1, src: "/images/arriba/1.jpeg", caption: "Vista Exterior", location: "Av. Crucero la Argentina" },
         { id: 2, src: "/images/arriba/2.jpeg", caption: "Interior Calido", location: "Av. Crucero la Argentina" },
         { id: 3, src: "/images/arriba/3.jpeg", caption: "Espacio Confortable", location: "Av. Crucero la Argentina" },
-        { id: 4, src: "/images/arriba/4.jpeg", caption: "Cocina Equipada", location: "Av. Crucero la Argentina" },
-        { id: 5, src: "/images/arriba/5.jpeg", caption: "Habitación Principal", location: "Av. Crucero la Argentina" },
-        { id: 6, src: "/images/arriba/6.jpeg", caption: "Detalles Únicos", location: "Av. Crucero la Argentina" },
+        { id: 4, src: "/images/arriba/4.jpeg", caption: "Baño", location: "Av. Crucero la Argentina" },
         { id: 7, src: "/images/arriba/7.jpeg", caption: "Entorno Natural", location: "Av. Crucero la Argentina" },
     ];
 
@@ -153,8 +163,8 @@ const Home = () => {
             <section className="relative min-h-screen flex flex-col lg:flex-row pt-20 overflow-hidden">
                 <div className="lg:w-7/12 relative h-[60vh] lg:h-auto overflow-hidden group">
                     <video
-                        src="/videos/video.mp4"
-                        poster="/images/11.jpeg"
+                        src={currentProperty.video}
+                        poster={currentProperty.poster}
                         autoPlay
                         loop
                         muted
@@ -169,7 +179,7 @@ const Home = () => {
                 </div>
                 <div className="lg:w-5/12 flex items-center justify-center p-8 lg:p-20 bg-snow dark:bg-hunter-green text-center lg:text-left">
                     <div className="max-w-md w-full">
-                        <span className="inline-block px-3 py-1 bg-gold-sand/40 text-hunter-green dark:text-snow text-xs font-bold uppercase tracking-widest rounded-full mb-6 text-center">Alquiler</span>
+                        <span className="inline-block px-3 py-1 bg-gold-sand/40 text-hunter-green dark:text-snow text-xs font-bold uppercase tracking-widest rounded-full mb-6 text-center">Departamento en alquiler, {currentProperty.name}</span>
                         <h1 className="text-5xl lg:text-7xl mb-6 text-hunter-green dark:text-snow leading-none font-bold">
                             Bienvenido a <br /><span className="text-olive-bark dark:text-muted-olive italic font-serif">El Refugio</span>
                         </h1>
