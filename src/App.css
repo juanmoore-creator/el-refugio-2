@@ -79,38 +79,43 @@
   background: rgba(74, 108, 69, 0.4);
 }
 
-/* React Day Picker Custom Styles */
-.rdp-day_booked:not(.rdp-day_selected) {
-  background-color: #fca5a5 !important;
-  color: #7f1d1d !important;
-  opacity: 1;
+/* React Day Picker v9 Custom Styles */
+.rdp-root {
+  --rdp-accent-color: #2e4a2d;
+  --rdp-accent-background-color: #dcfce7;
+  --rdp-range_start-date-background-color: #2e4a2d;
+  --rdp-range_end-date-background-color: #2e4a2d;
+  --rdp-range_middle-background-color: #e2f4e4;
+  --rdp-range_middle-color: #14532d;
+}
+
+.rdp-day_booked .rdp-day_button,
+.rdp-day_booked button,
+.rdp-day.rdp-day_booked {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  opacity: 1 !important;
   cursor: not-allowed !important;
-  border-radius: 4px;
+  border-radius: 9999px !important;
+  text-decoration: line-through !important;
 }
 
-.rdp-day_available:not(.rdp-day_selected):not(.rdp-today) {
-  background-color: #86efac !important;
-  color: #064e3b !important;
-  border-radius: 4px;
-}
-
-.rdp-disabled {
-  background-color: #e5e7eb !important;
+.rdp-disabled .rdp-day_button,
+.rdp-disabled button {
   color: #9ca3af !important;
-  opacity: 1 !important;
+  opacity: 0.5 !important;
   cursor: not-allowed !important;
-  border-radius: 4px;
 }
 
-/* Higher specificity to override general disabled style */
-.rdp-day_booked.rdp-disabled,
-.rdp-day.rdp-day_booked.rdp-day_disabled {
-  background-color: #fca5a5 !important;
-  color: #7f1d1d !important;
-  opacity: 1 !important;
-  text-decoration: none !important;
+.rdp-range_start .rdp-day_button,
+.rdp-range_end .rdp-day_button {
+  background-color: #2e4a2d !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
 }
 
-.rdp-day_booked.rdp-day_selected {
-  background-color: var(--rdp-accent-color) !important;
+.rdp-range_middle .rdp-day_button {
+  color: #14532d !important;
+  font-weight: 600 !important;
 }
