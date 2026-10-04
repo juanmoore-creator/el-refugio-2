@@ -87,6 +87,60 @@
   --rdp-range_end-date-background-color: #2e4a2d;
   --rdp-range_middle-background-color: #e2f4e4;
   --rdp-range_middle-color: #14532d;
+  margin: 0 auto !important;
+}
+
+.booking-calendar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.booking-calendar-wrapper .rdp-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-calendar-wrapper .rdp-months {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.booking-calendar-wrapper .rdp-month {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-calendar-wrapper .rdp-month_grid {
+  margin: 0 auto;
+}
+
+.booking-calendar-wrapper .rdp-caption_label {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #1f2937 !important;
+  text-transform: capitalize !important;
+}
+
+.booking-calendar-wrapper .rdp-weekday {
+  color: #4b5563 !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  opacity: 1 !important;
+}
+
+.booking-calendar-wrapper .rdp-nav .rdp-button_previous,
+.booking-calendar-wrapper .rdp-nav .rdp-button_next {
+  color: #2e4a2d !important;
+}
+
+.booking-calendar-wrapper .rdp-chevron {
+  fill: #2e4a2d !important;
 }
 
 .rdp-day_booked .rdp-day_button,
@@ -97,7 +151,8 @@
   opacity: 1 !important;
   cursor: not-allowed !important;
   border-radius: 9999px !important;
-  text-decoration: line-through !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
 }
 
 .rdp-disabled .rdp-day_button,
