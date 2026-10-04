@@ -6,7 +6,7 @@ import { es } from 'date-fns/locale';
 import { collection, onSnapshot, query, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 
-export default function BookingCalendar({ propertyId }) {
+export default function BookingCalendar({ propertyId, propertyName }) {
     const [range, setRange] = useState();
     const [disabledDays, setDisabledDays] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -74,10 +74,11 @@ export default function BookingCalendar({ propertyId }) {
         if (range?.from && range?.to) {
             const startStr = format(range.from, "d 'de' MMMM", { locale: es });
             const endStr = format(range.to, "d 'de' MMMM", { locale: es });
+            const propTitle = propertyName || (propertyId === 'yate-fortuna' ? 'Yate Fortuna' : 'Av. Crucero la Argentina');
 
-            const message = `Hola, vi el departamento en la web. Me interesa reservar del ${startStr} al ${endStr}. ¿Está disponible?`;
+            const message = `Hola! Vi la web de El Refugio y me interesa consultar disponibilidad para ${propTitle} del ${startStr} al ${endStr}. ¿Está disponible?`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/5492216430365?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/5492216128091?text=${encodedMessage}`, '_blank');
         }
     };
 
@@ -105,14 +106,12 @@ export default function BookingCalendar({ propertyId }) {
                         disabled={[{ before: tomorrow }, ...disabledDays]}
                         modifiers={{
                             booked: (date) => {
-                                // Only mark as booked if it's in the future (not disabled by "past/today" logic)
                                 const isFuture = !isBefore(date, tomorrow);
                                 if (!isFuture) return false;
 
                                 return disabledDays.some(booked => {
                                     if (booked instanceof Date) return isSameDay(date, booked);
                                     if (booked.from && booked.to) {
-                                        // Normalize booking dates to start of day to ignore time
                                         const bookedStart = new Date(booked.from);
                                         bookedStart.setHours(0, 0, 0, 0);
 
@@ -125,7 +124,6 @@ export default function BookingCalendar({ propertyId }) {
                                 });
                             },
                             available: (date) => {
-                                // A date is available if it's future and not booked
                                 const isFuture = !isBefore(date, tomorrow);
                                 if (!isFuture) return false;
 
@@ -146,7 +144,7 @@ export default function BookingCalendar({ propertyId }) {
                             }
                         }}
                         modifiersClassNames={{
-                            booked: 'rdp-day_booked', // Explicitly ensure class if needed, or just let default behavior work. Relying on CSS.
+                            booked: 'rdp-day_booked',
                             available: 'text-green-700 font-bold',
                         }}
                         locale={es}

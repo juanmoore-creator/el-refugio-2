@@ -21,6 +21,8 @@ const Home = () => {
     const [darkMode, setDarkMode] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [price, setPrice] = useState('75.000');
+    const [useCustomMessage, setUseCustomMessage] = useState(false);
+    const [customMessage, setCustomMessage] = useState('');
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -58,9 +60,14 @@ const Home = () => {
                 const docRef = doc(db, "properties", id, "settings", "pricing");
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    setPrice(docSnap.data().dailyPrice);
+                    const data = docSnap.data();
+                    setPrice(data.dailyPrice || '75.000');
+                    setUseCustomMessage(data.useCustomMessage || false);
+                    setCustomMessage(data.customMessage || '');
                 } else {
-                    setPrice('75.000'); // Default fallback
+                    setPrice('75.000');
+                    setUseCustomMessage(false);
+                    setCustomMessage('');
                 }
             } catch (error) {
                 console.error("Error fetching price:", error);
@@ -98,9 +105,11 @@ const Home = () => {
 
     const avCruceroImages = [
         { id: 1, src: "/images/arriba/1.jpeg", caption: "Vista Exterior", location: "Av. Crucero la Argentina" },
-        { id: 2, src: "/images/arriba/2.jpeg", caption: "Interior Calido", location: "Av. Crucero la Argentina" },
+        { id: 2, src: "/images/arriba/2.jpeg", caption: "Interior Cálido", location: "Av. Crucero la Argentina" },
         { id: 3, src: "/images/arriba/3.jpeg", caption: "Espacio Confortable", location: "Av. Crucero la Argentina" },
         { id: 4, src: "/images/arriba/4.jpeg", caption: "Baño", location: "Av. Crucero la Argentina" },
+        { id: 5, src: "/images/arriba/5.jpeg", caption: "Dormitorio", location: "Av. Crucero la Argentina" },
+        { id: 6, src: "/images/arriba/6.jpeg", caption: "Comedor y Cocina", location: "Av. Crucero la Argentina" },
         { id: 7, src: "/images/arriba/7.jpeg", caption: "Entorno Natural", location: "Av. Crucero la Argentina" },
     ];
 
@@ -125,7 +134,7 @@ const Home = () => {
 
                     <div className="flex items-center gap-2">
                         <a
-                            href="https://wa.me/5492216430365"
+                            href="https://wa.me/5492216128091"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 rounded-full hover:bg-muted-olive/20 dark:hover:bg-snow/20 text-hunter-green dark:text-snow transition-colors flex items-center justify-center"
@@ -281,11 +290,15 @@ const Home = () => {
                                 </li>
                                 <li className="flex items-center gap-3 text-hunter-green dark:text-snow/90 font-medium group">
                                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gold-sand/20 text-olive-bark dark:text-gold-sand group-hover:scale-110 transition-transform">
-                                        <span className="material-icons-outlined">calendar_today</span>
+                                        <span className="material-icons-outlined">{useCustomMessage ? 'info' : 'calendar_today'}</span>
                                     </div>
                                     <div>
                                         <p className="text-xs uppercase tracking-widest opacity-60">Temporada 2026</p>
-                                        <p className="text-xl font-bold font-serif italic">${price} <span className="text-sm font-sans not-italic font-normal opacity-70">/ día</span></p>
+                                        {useCustomMessage ? (
+                                            <p className="text-xl font-bold font-serif italic text-hunter-green dark:text-snow">{customMessage}</p>
+                                        ) : (
+                                            <p className="text-xl font-bold font-serif italic">${price} <span className="text-sm font-sans not-italic font-normal opacity-70">/ día</span></p>
+                                        )}
                                     </div>
                                 </li>
                             </ul>
@@ -293,7 +306,7 @@ const Home = () => {
 
                         {/* Booking Component Replacement */}
                         <div className="relative z-10 transform hover:translate-y-[-5px] transition-transform duration-500">
-                            <BookingCalendar propertyId={id} />
+                            <BookingCalendar propertyId={id} propertyName={currentProperty.name} />
                         </div>
                     </div>
                 </div>
