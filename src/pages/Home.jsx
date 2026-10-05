@@ -121,7 +121,10 @@ const Home = () => {
             {/* Navbar */}
             <nav className="fixed top-0 w-full z-50 bg-snow/90 dark:bg-hunter-green/90 backdrop-blur-md border-b border-muted-olive/20 dark:border-snow/10">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-                    <Link to="/" className="text-2xl font-bold tracking-tight text-hunter-green dark:text-snow font-sans">El Refugio</Link>
+                    <Link to="/" className="flex items-center gap-3 text-2xl font-bold tracking-tight text-hunter-green dark:text-snow font-sans group">
+                        <img src="/favicon.png" alt="El Refugio" className="w-10 h-10 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform" />
+                        <span>El Refugio</span>
+                    </Link>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase text-blue-slate dark:text-snow/90">
@@ -375,7 +378,10 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 text-center md:text-left">
                         <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
-                            <h2 className="text-3xl mb-6 font-bold text-snow">El Refugio</h2>
+                            <div className="flex items-center gap-3 mb-6">
+                                <img src="/favicon.png" alt="El Refugio" className="w-12 h-12 rounded-full object-cover shadow-md border border-white/20" />
+                                <h2 className="text-3xl font-bold text-snow">El Refugio</h2>
+                            </div>
                             <p className="text-snow/70 max-w-sm mb-8">Tu casa lejos de casa. Un refugio de paz y diseño frente al bosque pensado para crear recuerdos inolvidables.</p>
                             <div className="flex gap-4">
                                 <a href="https://www.instagram.com/elrefugio.aguasverdes/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-hunter-green/30 flex items-center justify-center hover:bg-hunter-green transition-colors">
